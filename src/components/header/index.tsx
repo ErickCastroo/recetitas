@@ -1,14 +1,20 @@
-import { useMemo } from 'react'
+import { useMemo, useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+
+import { useAppStore } from '@/store/useAppStore'
 
 function Header() {
 
   const { pathname } = useLocation()
+  const { fetchCategory, categorias } = useAppStore()
+
+  console.log(categorias)
+
+  useEffect(() => {
+    fetchCategory()
+  }, [])
 
   const isHome = useMemo(() => pathname === '/recetitas/', [pathname])
-
-  console.log(isHome)
-
   return (
     <header className='bg-slate-800'>
       <div className='mx-auto container px-5 py-3'>
@@ -66,6 +72,11 @@ function Header() {
                   className='bg-white p-3 w-full rounded-lg focus:outline-none'
                 >
                   <option value=''>Selecciona una categoria</option>
+                  {
+                    categorias.drinks.map((categoria) => (
+                      <option key={categoria.strCategory} value={categoria.strCategory}>{categoria.strCategory}</option>
+                    ))
+                  }
                 </select>
               </div>
               <input
