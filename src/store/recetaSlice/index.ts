@@ -1,12 +1,16 @@
 import { StateCreator } from "zustand";
-import { getCategorias, getRecetasByCategoria } from "@/services/recetasServices";
-import type { Categorias, BuscarReceta, Drinks } from "@/types";
+import { getCategorias, getRecetasByCategoria, getRecetaById } from "@/services/recetasServices";
+import type { Categorias, BuscarReceta, Drinks, Drink, RecipeAPIResponse,  } from "@/types";
 
 export type RecetasSliceType = {
   categorias: Categorias
   drinks: Drinks
+  RecetaSeleccionada: RecipeAPIResponse
+  modal: boolean
   fetchCategory: () => Promise<void>;
   buscarReceta: (buscarReceta: BuscarReceta) => Promise<void>
+  seleccionarReceta: (id: Drink['idDrink']) => void
+  closeModal: () => void
 };
 
 export const createRecetasSlice: StateCreator<RecetasSliceType> = (set) => ({
@@ -16,6 +20,8 @@ export const createRecetasSlice: StateCreator<RecetasSliceType> = (set) => ({
   drinks: {
     drinks: []
   },
+  RecetaSeleccionada:{} as RecipeAPIResponse,
+  modal: false,
   fetchCategory: async () => {
     const categorias = await getCategorias()
     if(!categorias)
@@ -38,12 +44,27 @@ export const createRecetasSlice: StateCreator<RecetasSliceType> = (set) => ({
       set({
         drinks: { drinks: [] }
       })
-      return
+      return 
     }
     set({
       drinks
     })
+  },
 
+  seleccionarReceta: async (id) => {
+    const RecetaSeleccionada = await getRecetaById(id);
+    set({
+      RecetaSeleccionada,
+      modal: true
+    })
+  },
+
+  closeModal: () => {
+    set({
+      modal: false,
+      RecetaSeleccionada: {} as RecipeAPIResponse
+    })
   }
+
 });
 

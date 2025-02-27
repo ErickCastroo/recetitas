@@ -1,13 +1,18 @@
-import { Outlet } from "react-router-dom"
+import { Outlet } from 'react-router-dom'
 
-import { Header } from "@/components/header"
+import { Header } from '@/components/Header'
+import { Modal } from '@/components/Modal'
 
 
 function Layout() {
   return (
     <>
       <Header />
-      <Outlet />
+
+      <main className='py-10'><Outlet /></main>
+      <Modal />
+
+
     </>
   )
 }
