@@ -1,20 +1,49 @@
 import { StateCreator } from "zustand";
-import { getCategorias } from "@/services/recetasServices";
-import type { categorias } from "@/types";
+import { getCategorias, getRecetasByCategoria } from "@/services/recetasServices";
+import type { Categorias, BuscarReceta, Drinks } from "@/types";
 
 export type RecetasSliceType = {
-  categorias: categorias;
+  categorias: Categorias
+  drinks: Drinks
   fetchCategory: () => Promise<void>;
+  buscarReceta: (buscarReceta: BuscarReceta) => Promise<void>
 };
 
 export const createRecetasSlice: StateCreator<RecetasSliceType> = (set) => ({
   categorias: {
-    drinks: [], // Estado inicial válido
+    drinks: []
+  },
+  drinks: {
+    drinks: []
   },
   fetchCategory: async () => {
-    const drinks = await getCategorias();
-
-    // Aseguramos que el estado siga la estructura de categorias
-    set({ categorias: { drinks: drinks ?? [] } });
+    const categorias = await getCategorias()
+    if(!categorias)
+    {
+      set(
+        {
+          categorias: { drinks: [] }
+        }
+      )
+      return
+    }
+    set({
+      categorias
+    })
   },
+
+  buscarReceta: async (filtro) => {
+    const drinks = await getRecetasByCategoria(filtro);
+    if(!drinks) {
+      set({
+        drinks: { drinks: [] }
+      })
+      return
+    }
+    set({
+      drinks
+    })
+
+  }
 });
+
