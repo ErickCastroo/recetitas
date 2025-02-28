@@ -1,4 +1,5 @@
 import { StateCreator } from 'zustand'
+import { toast } from 'sonner'
 import { RecipeAPIResponse } from '@/types'
 import { createRecetasSlice, RecetasSliceType } from '@/store/recetaSlice'
 
@@ -26,6 +27,7 @@ export const createFavoriteSlice: StateCreator<FavoritoSliceType & RecetasSliceT
       }))
     }
     createRecetasSlice(set, get, api).closeModal()
+    toast.success('Receta guardada en favoritos') 
     localStorage.setItem('favoritos', JSON.stringify(get().favoritos))
   },
   favoritoExiste: (id) => {

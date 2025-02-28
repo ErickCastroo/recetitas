@@ -1,5 +1,31 @@
 @import "tailwindcss";
 
-.background {
-  @apply bg-blue-950
+/* Estilos para navegadores WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px; /* Ancho del scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color del fondo del scrollbar */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4770c; /* Color del "pulgar" (barra que se desplaza) */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #fc8e10; /* Color cuando pasas el mouse por encima */
+}
+
+/* Para Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c96f09 #f1f1f1;
+}
+
+body{
+  font-family: 'Poppins', sans-serif;
+  background-color: #f1f1f1;
 }

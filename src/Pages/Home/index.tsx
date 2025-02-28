@@ -10,7 +10,7 @@ function Home() {
 
   return (
     <div>
-      <h1 className='text-6xl font-extrabold'>Recetas</h1>
+      <h1 className='flex text-5xl font-extrabold justify-center'>Recetas</h1>
       {hasDrinks ? (
         <div className='grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 my-10 gap-10 max-w-6xl mx-auto'>
           {drinks.drinks.map((drink) => (
