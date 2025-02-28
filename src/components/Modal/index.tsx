@@ -1,11 +1,11 @@
 import { JSX } from 'react'
 import { Dialog, DialogPanel, DialogTitle, Description, Transition, TransitionChild } from '@headlessui/react'
 import { useAppStore } from '@/store/useAppStore'
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaHeartBroken } from "react-icons/fa";
 
 
 function Modal() {
-  const { modal, closeModal, RecetaSeleccionada } = useAppStore()
+  const { modal, closeModal, RecetaSeleccionada, handleClickFavorite, favoritoExiste  } = useAppStore()
 
   const renderIngredientes = () => {
     const ingredientes: JSX.Element[] = []
@@ -24,6 +24,7 @@ function Modal() {
     }
     return ingredientes;
   };
+
 
   return (
     <Transition show={modal}>
@@ -84,8 +85,14 @@ function Modal() {
                 >
                   Cerrar
                 </button>
-                <button className='bg-blue-100 text-white px-4 py-2 rounded-md hover:bg-blue-600'>
-                  {<FaHeart />}
+                <button
+                  onClick={() => handleClickFavorite(RecetaSeleccionada)}
+                  className='bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700'>
+                  {
+                    favoritoExiste(RecetaSeleccionada?.idDrink) ?
+                      <FaHeartBroken className='inline-block' /> :
+                      <FaHeart className='inline-block' />
+                  }
                 </button>
               </div>
             </DialogPanel>
