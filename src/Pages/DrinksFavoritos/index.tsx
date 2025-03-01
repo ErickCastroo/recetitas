@@ -10,7 +10,7 @@ function DrinksFavoritos() {
   return (
     <>
       <h1 className='flex justify-center text-6xl font-extrabold'>
-        Favoritos
+      Favorite drinks
       </h1>
       <div className='grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 my-10 gap-10 max-w-6xl mx-auto'>
         {
@@ -19,7 +19,7 @@ function DrinksFavoritos() {
               <DrinkCard key={drink.idDrink} drink={drink} />
             )) :
             <p className='my-10 text-center text-2xl'>
-              No hay bebidas favoritas aún.
+              No favorite drinks yet.
             </p>
         }
       </div>
@@ -27,4 +27,4 @@ function DrinksFavoritos() {
   )
 }
 
-export { DrinksFavoritos }
+export default DrinksFavoritos;

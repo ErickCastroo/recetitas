@@ -29,7 +29,7 @@ function DrinkCard({ drink }: DrinkCardProps) {
           className='bg-orange-400 hover:bg-orange-500 mt-5 w-full p-3 font-bold text-white text-lg'
           onClick={() => seleccionarReceta(drink.idDrink)}
         >
-          Ver receta
+          See recipe
         </button>
       </div>
     </div>

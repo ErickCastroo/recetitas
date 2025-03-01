@@ -5,7 +5,7 @@ import { FaHeart, FaHeartBroken } from "react-icons/fa";
 
 
 function Modal() {
-  const { modal, closeModal, RecetaSeleccionada, handleClickFavorite, favoritoExiste  } = useAppStore()
+  const { modal, closeModal, RecetaSeleccionada, handleClickFavorite, favoritoExiste } = useAppStore()
 
   const renderIngredientes = () => {
     const ingredientes: JSX.Element[] = []
@@ -52,7 +52,7 @@ function Modal() {
                   {RecetaSeleccionada?.strDrink || 'Sin título'}
                 </DialogTitle>
                 <Description className='text-gray-600'>
-                  Detalles de la receta seleccionada.
+                  Details of the selected recipe.
                 </Description>
 
                 {RecetaSeleccionada?.strDrinkThumb && (
@@ -65,14 +65,14 @@ function Modal() {
               </div>
 
               <div className='text-left'>
-                <h3 className='text-xl font-semibold text-gray-900 border-b pb-2 mb-4'>Ingredientes y cantidades</h3>
+                <h3 className='text-xl font-semibold text-gray-900 border-b pb-2 mb-4'>Ingredients and quantities</h3>
                 <div className='max-h-60 overflow-y-auto mb-6'>
                   <ul className='grid grid-cols-2 gap-4'>
                     {renderIngredientes()}
                   </ul>
                 </div>
 
-                <h3 className='text-xl font-semibold text-gray-900 border-b pb-2 mb-4'>Instrucciones</h3>
+                <h3 className='text-xl font-semibold text-gray-900 border-b pb-2 mb-4'>Instructions</h3>
                 <p className='text-gray-700 leading-relaxed'>
                   {RecetaSeleccionada?.strInstructions || 'No hay instrucciones disponibles.'}
                 </p>
@@ -83,7 +83,7 @@ function Modal() {
                   onClick={closeModal}
                   className='bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400'
                 >
-                  Cerrar
+                  Close
                 </button>
                 <button
                   onClick={() => handleClickFavorite(RecetaSeleccionada)}

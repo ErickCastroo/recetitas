@@ -65,7 +65,7 @@ function Header() {
                   : 'flex justify-end items-center text-white hover:text-gray-300'
               }
             >
-              Drinks Favoritos
+              Favorite Drinks
             </NavLink>
           </nav>
         </div>
@@ -76,12 +76,12 @@ function Header() {
                 <label
                   htmlFor='ingrediente'
                   className='text-white font-extrabold text-lg'
-                >Nombre o ingrediente</label>
+                >Name or ingredient of the drink</label>
                 <input
                   type='text' 
                   id='ingrediente'
                   name='ingrediente'
-                  placeholder='escribe la bebida que desea realizar'
+                  placeholder='Search by name or ingredient'
                   className='bg-white p-3 w-full rounded-lg focus:outline-none'
                   onChange={handleChange}
                   value={filtros.ingrediente}
@@ -91,7 +91,7 @@ function Header() {
                 <label
                   htmlFor='categoria'
                   className='text-white font-extrabold text-lg'
-                >Categoria</label>
+                >Category</label>
                 <select
                   id='categoria'
                   name='categoria'
@@ -99,7 +99,7 @@ function Header() {
                   onChange={handleChange}
                   value={filtros.categoria}
                 >
-                  <option value=''>Selecciona una categoria</option>
+                  <option value=''>Select a category</option>
                   {
                     categorias?.drinks?.map((categoria) => (
                       <option key={categoria.strCategory} value={categoria.strCategory}>{categoria.strCategory}</option>
@@ -110,7 +110,7 @@ function Header() {
               <input
                 type='submit'
                 className='cursor-pointer bg-orange-800 hover:bg-orange-900 text-white font-extrabold w-full p-3 rounded-lg'
-                value='Buscar'
+                value='Search'
               />
             </form>
           )}

@@ -1,6 +1,6 @@
 import { StateCreator } from "zustand";
 import { getCategorias, getRecetasByCategoria, getRecetaById } from "@/services/recetasServices";
-import type { Categorias, BuscarReceta, Drinks, Drink, RecipeAPIResponse,  } from "@/types";
+import type { Categorias, BuscarReceta, Drinks, Drink, RecipeAPIResponse, } from "@/types";
 import { FavoritoSliceType } from "../favoritoSlice";
 
 export type RecetasSliceType = {
@@ -14,19 +14,18 @@ export type RecetasSliceType = {
   closeModal: () => void
 };
 
-export const createRecetasSlice: StateCreator<RecetasSliceType & FavoritoSliceType, [], [], RecetasSliceType > = (set) => ({
+export const createRecetasSlice: StateCreator<RecetasSliceType & FavoritoSliceType, [], [], RecetasSliceType> = (set) => ({
   categorias: {
     drinks: []
   },
   drinks: {
     drinks: []
   },
-  RecetaSeleccionada:{} as RecipeAPIResponse,
+  RecetaSeleccionada: {} as RecipeAPIResponse,
   modal: false,
   fetchCategory: async () => {
     const categorias = await getCategorias()
-    if(!categorias)
-    {
+    if (!categorias) {
       set(
         {
           categorias: { drinks: [] }
@@ -41,11 +40,11 @@ export const createRecetasSlice: StateCreator<RecetasSliceType & FavoritoSliceTy
 
   buscarReceta: async (filtro) => {
     const drinks = await getRecetasByCategoria(filtro);
-    if(!drinks) {
+    if (!drinks) {
       set({
         drinks: { drinks: [] }
       })
-      return 
+      return
     }
     set({
       drinks
@@ -59,12 +58,9 @@ export const createRecetasSlice: StateCreator<RecetasSliceType & FavoritoSliceTy
       modal: true
     })
   },
-
   closeModal: () => {
-    set({
-      modal: false,
-      RecetaSeleccionada: {} as RecipeAPIResponse
-    })
+    set({ modal: false });
+    setTimeout(() => set({ RecetaSeleccionada: {} as RecipeAPIResponse }), 300);
   }
 
 });

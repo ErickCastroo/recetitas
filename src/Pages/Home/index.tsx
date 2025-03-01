@@ -10,7 +10,7 @@ function Home() {
 
   return (
     <div>
-      <h1 className='flex text-5xl font-extrabold justify-center'>Recetas</h1>
+      <h1 className='flex text-5xl font-extrabold justify-center'>Recipes</h1>
       {hasDrinks ? (
         <div className='grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 my-10 gap-10 max-w-6xl mx-auto'>
           {drinks.drinks.map((drink) => (
@@ -19,7 +19,7 @@ function Home() {
         </div>
       ) : (
         <p className='my-10 text-center text-2xl'>
-          No hay bebidas aún, utiliza el formulario para buscar una bebida
+          There are no drinks yet, use the form to search for a drink
         </p>
       )}
     </div>
