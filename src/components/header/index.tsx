@@ -18,9 +18,6 @@ function Header() {
   useEffect(() => {
     fetchCategory()
   }, [])
-
-  console.log(categorias)
-
   const isHome = useMemo(() => pathname === '/recetitas/', [pathname])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {

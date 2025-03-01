@@ -11,7 +11,7 @@ export type FavoritoSliceType = {
   loadFromStoage: () => void
 }
 
-export const createFavoriteSlice: StateCreator<FavoritoSliceType & RecetasSliceType, [], [], FavoritoSliceType > = (set, get, api) => ({
+export const createFavoriteSlice: StateCreator<FavoritoSliceType & RecetasSliceType, [], [], FavoritoSliceType> = (set, get, api) => ({
   favoritos: [],
 
   handleClickFavorite: (receta) => {
@@ -19,15 +19,15 @@ export const createFavoriteSlice: StateCreator<FavoritoSliceType & RecetasSliceT
       set((state) => ({
         favoritos: state.favoritos.filter(favorito => favorito.idDrink !== receta.idDrink)
       }))
-
-    }
-    else {
+      toast.error('Recipe deleted from favorites')
+    } else {
       set((state) => ({
         favoritos: [...state.favoritos, receta]
       }))
+      toast.success('Recipe saved in favorites')
     }
+
     createRecetasSlice(set, get, api).closeModal()
-    toast.success('Receta guardada en favoritos') 
     localStorage.setItem('favoritos', JSON.stringify(get().favoritos))
   },
   favoritoExiste: (id) => {

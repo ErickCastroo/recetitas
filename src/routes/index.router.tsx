@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Toaster } from 'sonner'
 
 import { Layout } from '@/layout'
-import { Home } from '@/Pages/Home'
+
+const Home = lazy(() => import('@/Pages/Home'))
 const DrinksFavoritos = lazy(() => import('@/Pages/DrinksFavoritos'))
 
 const AppRouter = () => {
@@ -12,7 +13,13 @@ const AppRouter = () => {
       <Toaster position='top-center' />
       <Routes>
         <Route element={<Layout />}>
-          <Route path='/recetitas' element={<Home />} />
+          <Route path='/recetitas'
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Home />
+              </Suspense>
+            } index
+          />
           <Route path='/drinksfavoritos' element={
             <Suspense fallback={<div>Loading...</div>}>
               <DrinksFavoritos />
